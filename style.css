@@ -20,10 +20,10 @@ h3 {
     --text-color: #e0e0e0;
     --link-color: #ffffff;
     --accent-color-yellow: #ffc107;
-    --color-card-bg: #ff4141;  /* Color: イエローグリーン系 */
-    --texture-card-bg: #2c87ff; /* Texture: 青みがかったグレー系 */
-    --effect-card-bg: #c7a900; /* Effect: 赤系 */
-    --typography-card-bg: #72ff3b; /* Typography: ライトブルー系 */
+    --color-card-bg: #ff4141; 
+    --texture-card-bg: #2c87ff; 
+    --effect-card-bg: #c7a900; 
+    --typography-card-bg: #72ff3b; 
     --btn-bg-color: #555;
     --btn-text-color: #fff;
     --font-family-primary: 'Inter', sans-serif;
@@ -121,7 +121,34 @@ section {
 }
 
 
+/* バナー画像が入っている親要素の調整 */
+.hero-content {
+    flex: 1;
+    min-width: 300px;
+    margin-top: 200px; /* ★ここでヘッダーとの距離を調整します */
+    text-align: center; /* バナーとテキストを中央に寄せる場合 */
+}
 
+/* もしバナー画像だけに余白をつけたい場合 */
+.hero-banner {
+    margin-top: 40px;    /* ヘッダーからさらに離したい場合に追加 */
+    margin-bottom: 10px; /* 下の文字との距離 */
+}
+
+.hero-banner img {
+    max-width: 100%;
+    height: auto;
+    width: 1000px; /* お好みのサイズに */
+}
+@media (max-width: 768px) {
+    .hero-content {
+        margin-top: 40px; /* スマホでは少し控えめな余白にする */
+    }
+    
+    .hero-banner img {
+        width: 80%; /* スマホで見やすいサイズに */
+    }
+}
 /* Hero Section */
 .hero-section {
     min-height: 100vh;
@@ -485,5 +512,168 @@ footer .container {
         font-size: 2em;
         margin-bottom: 40px;
         padding-left: 15px;
+    }
+}
+
+/* ==================================================== */
+/* モバイル環境（個別ページ）の余白とバランスの最適化 */
+/* ==================================================== */
+
+@media (max-width: 768px) {
+    /* 1. セクション全体の上下の余白を増やす */
+    .project-detail-section, 
+    .gallery-section {
+        padding-top: 100px; /* ヘッダーとの距離を広げる */
+        padding-bottom: 120px;
+    }
+
+    /* 2. コンテナ左右の余白を広げ、画面端に窮屈さをなくす */
+    .container {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    /* 3. タイトル周りの余白 */
+    .page-title {
+        font-size: 2.2em;
+        margin-bottom: 20px; /* サブタイトルとの間隔 */
+    }
+
+    .page-subtitle {
+        font-size: 1.1em;
+        margin-bottom: 70px; /* グリッド（作品群）が始まるまでの余白を大きく取る */
+        line-height: 1.8;
+    }
+
+    /* 4. グリッドアイテム間の間隔を大幅に広げる */
+    .color-tri-grid,
+    .gallery-grid-clean {
+        grid-template-columns: 1fr; /* 縦1列にする */
+        gap: 80px; /* 作品と作品の間の縦の間隔を広げる（重要！） */
+    }
+
+    /* 5. 各アイテム内の要素間の余白 */
+    .color-grid-item,
+    .gallery-item-clean {
+        margin-bottom: 20px;
+    }
+
+    /* 画像と再生バーの距離 */
+    .main-visual-container {
+        margin-bottom: 15px; 
+    }
+
+    /* 再生バーとタイトルの距離 */
+    .audio-player-ui.outside-image {
+        margin-bottom: 45px; /* ここを広げることで文字情報が独立して見える */
+    }
+
+    /* 6. 文字情報（タイトル・説明文）の調整 */
+    .points-title {
+        font-size: 1.6em;
+        margin-bottom: 25px; /* タイトルと説明文の距離 */
+        letter-spacing: 0.05em; /* 文字の間隔を少し広げて読みやすく */
+    }
+
+    .description-text {
+        font-size: 1.05em;
+        line-height: 2.0; /* 行間を広くして読みやすく */
+        margin-bottom: 40px;
+    }
+
+    /* 7. 装飾的な線（description-lines）の余白 */
+    .description-lines {
+        gap: 25px; /* 線と線の間隔 */
+        margin-top: 30px;
+    }
+
+    /* 8. ボタン周り */
+    .back-to-projects-btn {
+        margin-top: 60px;
+        padding: 15px 30px;
+        display: inline-block;
+    }
+}
+/* ====================================================== */
+/* モバイル・統合スタイル (既存の@media 768pxは消してこれに置換) */
+/* ====================================================== */
+@media (max-width: 768px) {
+    /* 1. ヘッダーを横並びに強制し、ロゴとボタンを離す */
+    header .container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* 2. スクロール背景を透明化 */
+    header.scrolled {
+       background-color: gray; /* primary-bg-colorを少し透過させた色 */
+       padding: 5px 0
+
+    }
+
+    /* 3. ハンバーガーボタンを強制表示 */
+    .hamburger {
+        display: flex !important; /* 絶対に表示させる */
+        flex-direction: column;
+        cursor: pointer;
+        z-index: 1200; /* ロゴ(1000)より上に */
+        position: relative;
+    }
+
+    /* 三本線の色と太さを確定させる */
+    .hamburger span {
+        display: block;
+        width: 30px; /* 少し大きくしました */
+        height: 3px;
+        background-color: #ffffff !important; /* 白に固定 */
+        margin-bottom: 6px;
+        transition: 0.3s;
+    }
+
+    /* 4. ナビゲーションメニュー（全画面） */
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* 最初は隠す */
+        width: 100%;
+        height: 100vh;
+        background-color: #1a1a2e; /* 背景色 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s ease;
+        z-index: 1100;
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    nav ul {
+        flex-direction: column !important;
+        gap: 40px !important;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    nav ul li a {
+        font-size: 1.8rem !important;
+        color: #ffffff !important;
+    }
+
+    /* 5. ハンバーガーの「X」アニメーション */
+    .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    /* その他、個別ページの余白調整も統合 */
+    .gallery-section, .about-section, .projects-section {
+        padding-top: 120px !important;
     }
 }

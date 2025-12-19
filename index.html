@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visual to Music</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <header id="home">
         <div class="container">
             <a href="#hero" class="logo">
                 <img src="./images/logo5.png" alt="Logo" class="header-logo-image">
             </a>
-            
-            <nav>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav id="nav-menu">
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -26,13 +35,12 @@
     </header>
 
     <main>
-        <section id="hero" class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Visual to Music</h1>
-                    <p class="subtitle">音で楽しむアートワークの提案</p>
-                </div>
-                </div>
+        <div class="hero-content">
+            <h1 class="hero-banner">
+                <img src="images/banner.png" alt="banner">
+            </h1>
+            <p class="subtitle">Visual to Music</p>
+        </div>
         </section>
 
         <section id="about" class="about-section">
@@ -49,46 +57,46 @@
             <div class="pattern pattern-right"></div>
         </section>
 
-<section id="projects" class="projects-section">
-    <div class="container">
-        <h2 class="section-title">#Category</h2>
-        <div class="project-grid">
-            
-            <a href="pages/1Color.html" class="project-card-link color">
-                <div class="project-card">
-                    <h3>Color</h3>
-                    
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <h2 class="section-title">#Category</h2>
+                <div class="project-grid">
+
+                    <a href="pages/1Color.html" class="project-card-link color">
+                        <div class="project-card">
+                            <h3>Color</h3>
+
+                        </div>
+                    </a>
+
+                    <a href="pages/3Texture.html" class="project-card-link texture">
+                        <div class="project-card">
+                            <h3>Texture</h3>
+
+                        </div>
+                    </a>
+
+                    <a href="pages/5Effect.html" class="project-card-link effect">
+                        <div class="project-card">
+                            <h3>Effect</h3>
+
+                        </div>
+                    </a>
+
+                    <a href="pages/6Typography.html" class="project-card-link typography">
+                        <div class="project-card">
+                            <h3>Typography</h3>
+                        </div>
+                    </a>
+
                 </div>
-            </a>
+            </div>
+            <div class="pattern pattern-grid-top-left"></div>
+            <div class="pattern pattern-grid-bottom-right"></div>
 
-            <a href="pages/3Texture.html" class="project-card-link texture">
-                <div class="project-card">
-                    <h3>Texture</h3>
-                    
-                </div>
-            </a>
+        </section>
 
-            <a href="pages/5Effect.html" class="project-card-link effect">
-                <div class="project-card">
-                    <h3>Effect</h3>
-                    
-                </div>
-            </a>
-
-            <a href="pages/6Typography.html" class="project-card-link typography">
-                <div class="project-card">
-                    <h3>Typography</h3>
-                </div>
-            </a>
-            
-        </div>
-    </div>
-    <div class="pattern pattern-grid-top-left"></div>
-    <div class="pattern pattern-grid-bottom-right"></div>
-
-</section>
-
-        </main>
+    </main>
 
     <footer>
         <div class="container">
@@ -102,4 +110,5 @@
     </footer>
     <script src="script.js"></script>
 </body>
+
 </html>
