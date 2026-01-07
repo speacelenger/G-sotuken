@@ -74,7 +74,7 @@ header .container {
 }
 
 .header-logo-image {
-    height: 50px; /* ロゴ画像の高さを調整 (必要に応じて変更してください) */
+    height: 100px; /* ロゴ画像の高さを調整 (必要に応じて変更してください) */
     width: auto; /* アスペクト比を維持 */
     display: block; /* 余分なスペースをなくす */
 }
@@ -91,8 +91,9 @@ nav a {
 
 /* Header Scrolled */
 header.scrolled {
-    background-color: rgba(122, 122, 122, 0.74); /* primary-bg-colorを少し透過させた色 */
+    background-color: rgba(122, 122, 122, 0.70); /* primary-bg-colorを少し透過させた色 */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* 影を追加して浮き上がらせる */
+    padding: 1px 0 !important;
 }
 
 header.scrolled .logo,
@@ -188,7 +189,7 @@ section {
 /* About Section */
 .about-section {
     padding-top: 180px;
-    padding-bottom: 150px;
+    padding-bottom: 180px;
 }
 
 .about-content {
@@ -202,11 +203,62 @@ section {
     color: var(--text-color);
 }
 
+/* スクロールインジケーター全体の配置 */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;      /* 画面下からの位置 */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.scroll-down p {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* 矢印の形（V字型） */
+.arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg); /* 四角形を傾けて矢印にする */
+    animation: bounce 2s infinite; /* 2秒ごとに無限ループ */
+}
+
+/* 上下にフワフワ動くアニメーション */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) rotate(45deg);
+    }
+    40% {
+        transform: translateY(-10px) rotate(45deg);
+    }
+    60% {
+        transform: translateY(-5px) rotate(45deg);
+    }
+}
+@media (max-width: 768px) {
+    .scroll-down {
+        bottom: 20px;
+    }
+    .scroll-down p {
+        display: none; /* スマホでは文字を消して矢印だけにしてもOK */
+    }
+}
 
 /* Project Section */
 .projects-section {
-    padding-top: 110px;
-    padding-bottom: 190px;
+    padding-top: 200px;
+    padding-bottom: 230px;
 }
 
 /* Project Section (プロジェクトグリッドの修正) */
@@ -225,50 +277,62 @@ section {
     transition: opacity 0.3s ease, transform 0.3s ease; /* ホバーアニメーションを滑らかにする */
 }
 
+/* プロジェクトカードの共通設定 */
 .project-card {
     padding: 30px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 200px;
+    height: 250px; /* 画像を見せるために少し高さを出すのがおすすめ */
     color: #fff;
-    /* カーソルをポインターに変更して、クリック可能であることを示す */
     cursor: pointer;
-    /* リンクとして機能するため、デフォルトの背景は透明または極薄にする */
-    background-color: transparent; 
+    
+    /* 背景画像の設定 */
+    background-size: cover;        /* 画像をカードいっぱいに広げる */
+    background-position: center;   /* 画像の真ん中を表示 */
+    background-repeat: no-repeat;
+    position: relative;            /* 擬似要素用 */
+    overflow: hidden;
+    z-index: 1;
 }
 
+/* 各カードに個別の画像を指定 */
 .project-card-link.color .project-card { 
-    background-color: var(--color-card-bg); 
+    background-image: url('./images/Pcolor1.jpg'); 
 }
 .project-card-link.texture .project-card { 
-    background-color: var(--texture-card-bg); 
+    background-image: url('./images/Ptex1.jpg'); 
 }
 .project-card-link.effect .project-card { 
-    background-color: var(--effect-card-bg); 
+    background-image: url('./images/Peffect1.jpg'); 
 }
 .project-card-link.typography .project-card { 
-    background-color: var(--typography-card-bg); 
+    background-image: url('./images/Ptypo2.png'); 
 }
 
+/* 文字を読みやすくするための黒いフィルター */
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* 0.4を大きくするともっと暗くなります */
+    z-index: -1; /* 文字より後ろ、背景より前 */
+    transition: 0.3s;
+}
 
-
-.project-card-link:hover {
-    /* マウスホバーで透明度を上げる（薄くする） */
-    opacity: 0.8;
-    /* 少し上に持ち上げるエフェクトを追加すると、インタラクティブ性が高まります */
-    transform: translateY(-5px);
+/* ホバー時にフィルターを薄くして画像を明るく見せる演出 */
+.project-card-link:hover .project-card::before {
+    background: rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    /* ... 略 ... */
-    
+    .project-card {
+        height: 180px; /* スマホでは少し低めにしてスクロールしやすく */
+    }
     .project-grid {
-        /* モバイルでは縦1列に戻す設定は維持（大きなサイズのカードが縦に並びます） */
-        grid-template-columns: 1fr;
-        gap: 30px; 
+        gap: 20px; /* カード同士の間隔を少し詰める */
     }
 }
 
